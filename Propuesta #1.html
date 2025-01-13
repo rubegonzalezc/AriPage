@@ -1,0 +1,1339 @@
+<html><head><base href="." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Lecturas Mágicas de Tarot ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-pink: #ffd6e6;
+            --secondary-pink: #ffb6c1;
+            --accent-purple: #e6c3ff;
+            --text-color: #4a4a4a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            background-color: #fff5f8;
+            color: var(--text-color);
+        }
+
+        .navbar {
+            background-color: var(--primary-pink);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff69b4;
+        }
+
+        .nav-links a::after {
+            content: '★';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: translateX(-50%) scale(1);
+        }
+
+        .hero {
+            height: 100vh;
+            width: 100%!important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple));
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Elementos decorativos flotantes */
+        .hero::before {
+            content: '🌟';
+            position: absolute;
+            top: 15%;
+            left: 10%;
+            font-size: 2rem;
+            animation: floatingStar 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '🌙';
+            position: absolute;
+            bottom: 20%;
+            right: 10%;
+            font-size: 2rem;
+            animation: floatingStar 6s ease-in-out infinite reverse;
+        }
+
+        .floating-crystal-1 {
+            position: absolute;
+            top: 30%;
+            left: 15%;
+            font-size: 2.5rem;
+            animation: floatingCrystal 7s ease-in-out infinite;
+        }
+
+        .floating-crystal-2 {
+            position: absolute;
+            bottom: 25%;
+            right: 15%;
+            font-size: 2.5rem;
+            animation: floatingCrystal 7s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem 3rem;
+            border-radius: 30px;
+            box-shadow: 0 8px 32px rgba(255, 182, 193, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: floatingTitle 3s ease-in-out infinite;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .sparkles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            animation: sparkleFloat 4s linear infinite;
+            color: white;
+            opacity: 0.6;
+            font-size: 1.2rem;
+        }
+
+        @keyframes floatingTitle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes floatingStar {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(20px, -20px) rotate(20deg); }
+        }
+
+        @keyframes floatingCrystal {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(-15px, 15px) rotate(-15deg) scale(1.1); }
+        }
+
+        @keyframes sparkleFloat {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Decoraciones adicionales */
+        .hero-decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .decoration-1 { top: 15%; left: 20%; animation: float 4s ease-in-out infinite; }
+        .decoration-2 { top: 25%; right: 25%; animation: float 5s ease-in-out infinite; }
+        .decoration-3 { bottom: 20%; left: 25%; animation: float 6s ease-in-out infinite; }
+        .decoration-4 { bottom: 30%; right: 20%; animation: float 7s ease-in-out infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .magic-button {
+            background: linear-gradient(45deg, #ffd6e6, #ffb6c1);
+            color: var(--text-color);
+            border: 3px solid white;
+            border-radius: 25px;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: auto;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .magic-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ffb6c1, #e6c3ff);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: 22px;
+        }
+
+        .magic-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 182, 193, 0.3);
+        }
+
+        .magic-button:hover::before {
+            opacity: 1;
+        }
+
+        .magic-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .magic-button .sparkle-left {
+            position: absolute;
+            left: 10px;
+            animation: sparkleFloat 2s ease-in-out infinite;
+        }
+
+        .magic-button .sparkle-right {
+            position: absolute;
+            right: 10px;
+            animation: sparkleFloat 2s ease-in-out infinite reverse;
+        }
+
+        @keyframes sparkleFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(15deg); }
+        }
+
+        .calendar-header .magic-button {
+            width: 40px;
+            height: 40px;
+            padding: 0;
+            min-width: unset;
+            justify-content: center;
+        }
+
+        .booking-summary .magic-button {
+            width: 100%;
+            max-width: none;
+        }
+
+        .time-slot {
+            padding: 1rem;
+            background: white;
+            border: 2px solid var(--primary-pink);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .time-slot:hover {
+            background: var(--primary-pink);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 182, 193, 0.2);
+        }
+
+        .time-slot.selected {
+            background: var(--secondary-pink);
+            border-color: var(--accent-purple);
+            color: white;
+            font-weight: 600;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+
+        .form-group select:hover {
+            border-color: var(--secondary-pink);
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(230, 195, 255, 0.2);
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        section:not(.hero) {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .hero {
+            height: 100vh;
+            width: 100%!important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple));
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #about {
+            background: white;
+            border-radius: 30px;
+            margin: 2rem auto;
+            padding: 4rem 2rem;
+            box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+        }
+
+        #services {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            margin: 2rem auto;
+            padding: 4rem 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-pink), var(--accent-purple));
+            border-radius: 3px;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 0 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        #booking {
+            background: white;
+            border-radius: 30px;
+            margin: 2rem auto;
+            padding: 4rem 2rem;
+            box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+        }
+        /* Asegúrate de que los estilos para las clases seleccionadas existan */
+.service-card.selected {
+    border: 2px solid var(--accent-purple);
+    box-shadow: 0 4px 20px rgba(230, 195, 255, 0.3);
+}
+
+.time-slot.selected {
+    background: var(--secondary-pink);
+    border-color: var(--accent-purple);
+    color: white;
+    font-weight: 600;
+}
+        .booking-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 3rem;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .booking-sidebar {
+            background: var(--primary-pink);
+            padding: 2rem;
+            border-radius: 20px;
+            height: fit-content;
+        }
+
+        .calendar-wrapper {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .calendar-header h3 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .calendar-day {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .calendar-day.weekday {
+            font-weight: bold;
+            color: var(--secondary-pink);
+            height: 40px;
+        }
+
+        .time-slots {
+            margin-top: 2rem;
+            border-top: 2px solid var(--primary-pink);
+            padding-top: 2rem;
+        }
+
+        .time-slots h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+
+        #availableTimeSlots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+
+        .time-slot {
+            padding: 1rem;
+            background: var(--primary-pink);
+            border: 2px solid var(--secondary-pink);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--secondary-pink);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .booking-summary {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--primary-pink);
+            font-size: 1rem;
+        }
+
+        .magic-button {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Ajustes para pantallas grandes */
+        @media (min-width: 1200px) {
+            .booking-container {
+                grid-template-columns: 350px 1fr;
+            }
+
+            .calendar-day {
+                height: 60px;
+                font-size: 1.2rem;
+            }
+
+            #availableTimeSlots {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+
+        /* Ajustes responsivos para pantallas grandes */
+        @media (min-width: 1400px) {
+            section {
+                padding: 6rem 2rem;
+            }
+
+            .service-cards {
+                gap: 3rem;
+            }
+
+            .booking-container {
+                grid-template-columns: 400px 1fr;
+            }
+        }
+
+        /* Ajustes responsivos para pantallas medianas */
+        @media (max-width: 1200px) {
+            .service-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Ajustes responsivos para tablets */
+        @media (max-width: 992px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+
+            .service-cards {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+        }
+
+        /* Animaciones para los elementos decorativos */
+        .sparkle-left, .sparkle-right {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .magic-button:hover .sparkle-left {
+            transform: translateX(-3px) rotate(-15deg);
+        }
+
+        .magic-button:hover .sparkle-right {
+            transform: translateX(3px) rotate(15deg);
+        }
+
+        /* Estilos para el footer */
+        .footer {
+            background: linear-gradient(45deg, #ffd6e6, #e6c3ff);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-section {
+            text-align: center;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            color: #4a4a4a;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary-pink);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin: 0.8rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-links a {
+            color: #4a4a4a;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: #ff69b4;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #4a4a4a;
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.3);
+            min-width: 140px;
+            font-weight: 500;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link.instagram:hover {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        .social-link.facebook:hover {
+            background: #4267B2;
+            color: white;
+        }
+
+        .social-link.youtube:hover {
+            background: #FF0000;
+            color: white;
+        }
+
+        .social-link.tiktok:hover {
+            background: linear-gradient(45deg, #000000, #69C9D0);
+            color: white;
+        }
+
+        .social-link.whatsapp:hover {
+            background: #25D366;
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(74, 74, 74, 0.2);
+            color: #4a4a4a;
+        }
+
+        .developer-credit {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .developer-credit a {
+            color: #4a4a4a;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .developer-credit a:hover {
+            color: #ff69b4;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilos para la sección de videos */
+        #videos {
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-purple));
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+            border-radius:20px;
+        }
+
+        .videos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(255, 182, 193, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(255, 182, 193, 0.4);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Aspecto 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .video-info h3 {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Decoraciones flotantes para la sección */
+        .video-decoration {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .video-decoration-1 { top: 10%; left: 5%; animation: floatAnimation 6s infinite; }
+        .video-decoration-2 { top: 20%; right: 5%; animation: floatAnimation 7s infinite; }
+        .video-decoration-3 { bottom: 10%; left: 8%; animation: floatAnimation 8s infinite; }
+        .video-decoration-4 { bottom: 15%; right: 8%; animation: floatAnimation 6s infinite; }
+
+        @keyframes floatAnimation {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(10px, -10px) rotate(5deg); }
+        }
+
+        /* Título decorativo */
+        .videos-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .videos-title::before,
+        .videos-title::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+        }
+
+        .videos-title::before { left: -40px; }
+        .videos-title::after { right: -40px; }
+
+        .videos-subtitle {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="https://images.vexels.com/content/242402/preview/tarot-card-the-star-filled-stroke-8316c8.png" alt="Logo" class="logo">
+            <span class="logo-text">✨ Lecturas Mágicas</span>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Inicio</a>
+            <a href="#about">Sobre mí</a>
+            <a href="#misvideos">Mis vídeos</a>
+            <a href="#services">Especialidad</a>
+            <a href="#booking">Agendar</a>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="sparkles-container">
+            <!-- Los sparkles se añadirán dinámicamente con JavaScript -->
+        </div>
+        
+        <span class="floating-crystal-1">💎</span>
+        <span class="floating-crystal-2">💎</span>
+        
+        <!-- Decoraciones adicionales -->
+        <span class="hero-decoration decoration-1">✨</span>
+        <span class="hero-decoration decoration-2">🌟</span>
+        <span class="hero-decoration decoration-3">⭐</span>
+        <span class="hero-decoration decoration-4">✨</span>
+
+        <div class="hero-content">
+            <h1 class="floating">✨ Bienvenida a tu Lectura Mágica ✨</h1>
+            <p>✿ Descubre los secretos que las cartas tienen para ti ✿</p>
+            <button class="magic-button" onclick="createSparkles(event)">
+                <span class="sparkle-left">✨</span>
+                <span>Comenzar mi viaje mágico</span>
+                <span class="sparkle-right">✨</span>
+            </button>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">✨ Sobre mí</h2>
+        <div class="content">
+            <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                Soy una lectora de tarot apasionada por guiar a otros en su camino espiritual. 
+                Con años de experiencia en la interpretación de las cartas, 
+                me dedico a brindar claridad y orientación en momentos de duda o transición.
+            </p>
+        </div>
+    </section>
+
+    <section id="videos">
+        <div class="videos-container">
+            <h2 class="videos-title">Mis Videos Mágicos</h2>
+            <p class="videos-subtitle">✿ Descubre mis lecturas y consejos espirituales ✿</p>
+            
+            <div class="videos-grid">
+                <!-- Video 1 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/VIDEO_ID_1" 
+                            title="Video de Tarot 1" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>✨ Lectura Especial de Luna Llena</h3>
+                        <p>Descubre los mensajes que la luna tiene para ti</p>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/VIDEO_ID_2" 
+                            title="Video de Tarot 2" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>✨ Rituales de Amor</h3>
+                        <p>Abre tu corazón a nuevas posibilidades</p>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/VIDEO_ID_3" 
+                            title="Video de Tarot 3" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>✨ Mensajes del Universo</h3>
+                        <p>Guía espiritual para tu camino</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decoraciones flotantes -->
+        <span class="video-decoration video-decoration-1">🌟</span>
+        <span class="video-decoration video-decoration-2">🌙</span>
+        <span class="video-decoration video-decoration-3">✨</span>
+        <span class="video-decoration video-decoration-4">⭐</span>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">✨ Mis servicios mágicos</h2>
+        <div class="service-cards">
+            <div class="service-card" onclick="selectService('lectura-general')">
+                <h3>🌟 Lectura General</h3>
+                <p>30 minutos - $30.000</p>
+                <p>Una visión completa de tu situación actual</p>
+            </div>
+            <div class="service-card" onclick="selectService('amor-relaciones')">
+                <h3>💖 Amor y Relaciones</h3>
+                <p>45 minutos - $45.000</p>
+                <p>Orientación específica sobre tu vida amorosa</p>
+            </div>
+            <div class="service-card" onclick="selectService('carrera-abundancia')">
+                <h3>✨ Carrera y Abundancia</h3>
+                <p>45 minutos - $45.000</p>
+                <p>Guía para tu desarrollo profesional y financiero</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="booking">
+        <h2 class="section-title">✨ Agenda tu lectura mágica</h2>
+        <div class="booking-container">
+            <!-- Sidebar con formulario -->
+            <div class="booking-sidebar">
+                <div class="form-group">
+                    <label>✨ Selecciona tu servicio:</label>
+                    <select id="serviceSelect" onchange="updateAvailability()">
+                        <option value="">Elige un servicio mágico</option>
+                        <option value="lectura-general">🌟 Lectura General (30 min)</option>
+                        <option value="amor-relaciones">💖 Amor y Relaciones (45 min)</option>
+                        <option value="carrera-abundancia">✨ Carrera y Abundancia (45 min)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>🌙 Tipo de sesión:</label>
+                    <select id="sessionType" onchange="updateAvailability()">
+                        <option value="presencial">✨ Presencial</option>
+                        <option value="virtual">💫 Virtual (Zoom)</option>
+                    </select>
+                </div>
+
+                <!-- Resumen de la reserva -->
+                <div class="booking-summary" id="bookingSummary" style="display: none;">
+                    <h3>✨ Resumen de tu cita</h3>
+                    <div class="summary-item">
+                        <span>Servicio:</span>
+                        <span id="summaryService"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Fecha:</span>
+                        <span id="summaryDate"></span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Hora:</span>
+                        <span id="summaryTime"></span>
+                    </div>
+                    <button class="magic-button" onclick="confirmBooking()">
+                        <span>✨</span>
+                        <span>Confirmar cita mágica</span>
+                        <span>✨</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenedor del calendario -->
+            <div class="calendar-wrapper">
+                <div class="calendar-header">
+                    <button class="magic-button" onclick="previousMonth()">
+                        <span>←</span>
+                    </button>
+                    <h3 id="currentMonth"></h3>
+                    <button class="magic-button" onclick="nextMonth()">
+                        <span>→</span>
+                    </button>
+                </div>
+                <div id="calendar"></div>
+                
+                <div class="time-slots" id="timeSlots" style="display: none;">
+                    <h4>✨ Horarios disponibles:</h4>
+                    <div id="availableTimeSlots"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let selectedService = null;
+        let selectedSessionType = null;
+        let selectedDate = null;
+        let selectedTime = null;
+        let calendar; // Declarar calendar globalmente
+    
+        function selectService(serviceId) {
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            const card = event.currentTarget;
+            card.classList.add('selected');
+            selectedService = serviceId;
+            document.getElementById('serviceSelect').value = serviceId;
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+    
+        function updateAvailability() {
+            selectedService = document.getElementById('serviceSelect').value;
+            selectedSessionType = document.getElementById('sessionType').value;
+            // Lógica para actualizar disponibilidad basada en servicio y tipo de sesión
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'es',
+                headerToolbar: {
+                    left: '',
+                    center: 'title',
+                    right: ''
+                },
+                selectable: true,
+                selectMirror: true,
+                select: function(arg) {
+                    if (!selectedService) {
+                        alert('Por favor selecciona un servicio primero');
+                        return;
+                    }
+    
+                    selectedDate = arg.start;
+                    showTimeSlots();
+                },
+                eventClick: function(arg) {
+                    if (confirm('¿Deseas cancelar esta cita?')) {
+                        arg.event.remove();
+                    }
+                }
+            });
+            calendar.render();
+        });
+    
+        function showTimeSlots() {
+            const timeSlots = document.getElementById('timeSlots');
+            timeSlots.style.display = 'block';
+            
+            const availableSlots = document.getElementById('availableTimeSlots');
+            availableSlots.innerHTML = '';
+            
+            // Ejemplo de horarios disponibles según servicio
+            let slots = [];
+            if (selectedService === 'lectura-general') {
+                slots = ['09:00', '10:00', '11:00', '15:00', '16:00', '17:00'];
+            } else if (selectedService === 'amor-relaciones') {
+                slots = ['10:00', '12:00', '14:00', '16:00'];
+            } else if (selectedService === 'carrera-abundancia') {
+                slots = ['09:30', '11:30', '13:30', '15:30'];
+            }
+    
+            slots.forEach(time => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.textContent = time;
+                slot.onclick = () => selectTimeSlot(time);
+                availableSlots.appendChild(slot);
+            });
+        }
+    
+        function selectTimeSlot(time) {
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            selectedTime = time;
+            updateSummary();
+        }
+    
+        function updateSummary() {
+            if (selectedDate && selectedTime) {
+                const summary = document.getElementById('bookingSummary');
+                summary.style.display = 'block';
+                
+                document.getElementById('summaryService').textContent = 
+                    document.getElementById('serviceSelect').options[document.getElementById('serviceSelect').selectedIndex].text;
+                document.getElementById('summaryDate').textContent = 
+                    selectedDate.toLocaleDateString();
+                document.getElementById('summaryTime').textContent = selectedTime;
+            }
+        }
+    
+        function confirmBooking() {
+            if (selectedDate && selectedTime && selectedService) {
+                // Agregar evento al calendario
+                calendar.addEvent({
+                    title: 'Reservado',
+                    start: new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), parseInt(selectedTime.split(':')[0]), parseInt(selectedTime.split(':')[1])),
+                    allDay: false
+                });
+                alert('¡Tu cita mágica ha sido confirmada! ✨');
+                // Resetear selección
+                resetSelection();
+            } else {
+                alert('Por favor completa todos los campos de la reserva.');
+            }
+        }
+    
+        function resetSelection() {
+            selectedService = null;
+            selectedSessionType = null;
+            selectedDate = null;
+            selectedTime = null;
+            document.querySelectorAll('.service-card').forEach(card => card.classList.remove('selected'));
+            document.getElementById('serviceSelect').value = '';
+            document.getElementById('sessionType').value = 'presencial';
+            document.getElementById('bookingSummary').style.display = 'none';
+            document.getElementById('timeSlots').style.display = 'none';
+            document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+        }
+    
+        function previousMonth() {
+            calendar.prev(); // Usar el calendario global
+        }
+    
+        function nextMonth() {
+            calendar.next(); // Usar el calendario global
+        }
+    </script>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>✨ Navegación</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#about">Sobre mí</a></li>
+                    <li><a href="#misvideos">Mis vídeos</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#booking">Agendar</a></li>
+                    
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>✨ Contacto</h3>
+                <ul class="footer-links">
+                    <li>📧 info@lecturamagica.com</li>
+                    <li>📱 +56 9 1234 5678</li>
+                    <li>📍 Santiago, Chile</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>✨ Sígueme</h3>
+                <div class="social-links">
+                    <a href="https://instagram.com/tuusuario" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://facebook.com/tupagina" target="_blank" class="social-link facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://youtube.com/tucanal" target="_blank" class="social-link youtube">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://tiktok.com/@tuusuario" target="_blank" class="social-link tiktok">
+                        <i class="fab fa-tiktok"></i>
+                        <span>TikTok</span>
+                    </a>
+                    <a href="https://wa.me/tucélular" target="_blank" class="social-link whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Lecturas Mágicas. Todos los derechos reservados.</p>
+            <p class="developer-credit">
+                Desarrollado con 💖 por <a href="https://tuportfolio.com" target="_blank">Tu Nombre</a>
+            </p>
+        </div>
+    </footer>
+</body></html>
