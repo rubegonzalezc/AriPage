@@ -3,10 +3,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ Lecturas Mágicas de Tarot ✨</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<!-- FullCalendar CSS -->
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
-<!-- FullCalendar JS -->
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -939,6 +935,210 @@
             margin-bottom: 3rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .magic-input, .magic-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--primary-pink);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .magic-input:focus, .magic-textarea:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 3px rgba(230, 195, 255, 0.2);
+        }
+
+        .magic-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .magic-input::placeholder, .magic-textarea::placeholder {
+            color: #999;
+        }
+
+        /* Estilos responsivos para el menú */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            z-index: 1001;
+        }
+
+        /* Media queries para responsividad */
+        @media (max-width: 768px) {
+            /* Navbar responsivo */
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--primary-pink);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                transition: 0.3s ease-in-out;
+                z-index: 1000;
+                padding: 2rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            /* Hero section responsivo */
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+                width: 95%;
+            }
+
+            /* Services section responsivo */
+            .service-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            /* Videos section responsivo */
+            .videos-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .videos-title {
+                font-size: 2rem;
+            }
+
+            /* Footer responsivo */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .social-links {
+                align-items: center;
+            }
+
+            .social-link {
+                width: 100%;
+                max-width: 200px;
+                justify-content: center;
+            }
+
+            /* Ajustes generales para móvil */
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            /* Formulario de contacto responsivo */
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .magic-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            /* Logo responsivo */
+            .logo-container {
+                flex-shrink: 0;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Ajustes adicionales para pantallas muy pequeñas */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                width: 100%;
+            }
+
+            .social-link {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Ajustes para la orientación landscape en móviles */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .nav-links {
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            .hero {
+                min-height: 120vh;
+            }
+        }
+
+        /* Agregar estos estilos para mejorar el scroll */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Ajustar según la altura de tu navbar */
+        }
+
+        /* Asegurar que las secciones tengan suficiente padding-top para compensar el navbar fijo */
+        section:not(.hero) {
+            padding-top: 80px; /* Ajustar según la altura de tu navbar */
+            margin-top: -80px; /* Compensar el padding-top */
+        }
     </style>
 </head>
 <body>
@@ -947,12 +1147,16 @@
             <img src="https://images.vexels.com/content/242402/preview/tarot-card-the-star-filled-stroke-8316c8.png" alt="Logo" class="logo">
             <span class="logo-text">✨ Lecturas Mágicas</span>
         </div>
-        <div class="nav-links">
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
             <a href="#home">Inicio</a>
             <a href="#about">Sobre mí</a>
-            <a href="#misvideos">Mis vídeos</a>
+            <a href="#videos">Mis vídeos</a>
             <a href="#services">Especialidad</a>
-            <a href="#booking">Agendar</a>
+            <a href="#booking">Contactame</a>
+            <a href="#tienda">Tienda</a>
         </div>
     </nav>
 
@@ -1077,13 +1281,12 @@
     </section>
 
     <section id="booking">
-        <h2 class="section-title">✨ Agenda tu lectura mágica</h2>
-        <div class="booking-container">
-            <!-- Sidebar con formulario -->
-            <div class="booking-sidebar">
+        <h2 class="section-title">✨ Contáctame</h2>
+        <div class="booking-container" style="grid-template-columns: 1fr;">
+            <div class="contact-form">
                 <div class="form-group">
-                    <label>✨ Selecciona tu servicio:</label>
-                    <select id="serviceSelect" onchange="updateAvailability()">
+                    <label>✨ Selecciona el tipo de lectura:</label>
+                    <select id="serviceSelect">
                         <option value="">Elige un servicio mágico</option>
                         <option value="lectura-general">🌟 Lectura General (30 min)</option>
                         <option value="amor-relaciones">💖 Amor y Relaciones (45 min)</option>
@@ -1092,64 +1295,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label>🌙 Tipo de sesión:</label>
-                    <select id="sessionType" onchange="updateAvailability()">
-                        <option value="presencial">✨ Presencial</option>
-                        <option value="virtual">💫 Virtual (Zoom)</option>
-                    </select>
+                    <label>💫 Tu nombre:</label>
+                    <input type="text" id="userName" class="magic-input" placeholder="Ingresa tu nombre">
                 </div>
 
-                <!-- Resumen de la reserva -->
-                <div class="booking-summary" id="bookingSummary" style="display: none;">
-                    <h3>✨ Resumen de tu cita</h3>
-                    <div class="summary-item">
-                        <span>Servicio:</span>
-                        <span id="summaryService"></span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Fecha:</span>
-                        <span id="summaryDate"></span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Hora:</span>
-                        <span id="summaryTime"></span>
-                    </div>
-                    <button class="magic-button" onclick="confirmBooking()">
-                        <span>✨</span>
-                        <span>Confirmar cita mágica</span>
-                        <span>✨</span>
-                    </button>
+                <div class="form-group">
+                    <label>🌙 Tu mensaje:</label>
+                    <textarea id="userMessage" class="magic-textarea" placeholder="Escribe tu mensaje aquí..."></textarea>
                 </div>
-            </div>
 
-            <!-- Contenedor del calendario -->
-            <div class="calendar-wrapper">
-                <div class="calendar-header">
-                    <button class="magic-button" onclick="previousMonth()">
-                        <span>←</span>
-                    </button>
-                    <h3 id="currentMonth"></h3>
-                    <button class="magic-button" onclick="nextMonth()">
-                        <span>→</span>
-                    </button>
-                </div>
-                <div id="calendar"></div>
-                
-                <div class="time-slots" id="timeSlots" style="display: none;">
-                    <h4>✨ Horarios disponibles:</h4>
-                    <div id="availableTimeSlots"></div>
-                </div>
+                <button class="magic-button" onclick="sendWhatsAppMessage()">
+                    <span class="sparkle-left">✨</span>
+                    <span>Enviar mensaje mágico</span>
+                    <span class="sparkle-right">✨</span>
+                </button>
             </div>
         </div>
     </section>
 
     <script>
         let selectedService = null;
-        let selectedSessionType = null;
-        let selectedDate = null;
-        let selectedTime = null;
-        let calendar; // Declarar calendar globalmente
-    
+
         function selectService(serviceId) {
             document.querySelectorAll('.service-card').forEach(card => {
                 card.classList.remove('selected');
@@ -1160,127 +1326,82 @@
             document.getElementById('serviceSelect').value = serviceId;
             document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
         }
-    
-        function updateAvailability() {
-            selectedService = document.getElementById('serviceSelect').value;
-            selectedSessionType = document.getElementById('sessionType').value;
-            // Lógica para actualizar disponibilidad basada en servicio y tipo de sesión
+
+        function sendWhatsAppMessage() {
+            const service = document.getElementById('serviceSelect').value;
+            const name = document.getElementById('userName').value;
+            const message = document.getElementById('userMessage').value;
+            
+            if (!service || !name || !message) {
+                alert('Por favor completa todos los campos ✨');
+                return;
+            }
+
+            const serviceText = document.getElementById('serviceSelect').options[document.getElementById('serviceSelect').selectedIndex].text;
+            
+            // Reemplaza este número con tu número de WhatsApp
+            const phoneNumber = '56912345678';
+            
+            const whatsappMessage = `¡Hola! Mi nombre es ${name}.\n\nEstoy interesad@ en: ${serviceText}\n\nMensaje: ${message}`;
+            
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
         }
-    
+
         document.addEventListener('DOMContentLoaded', function() {
-            const calendarEl = document.getElementById('calendar');
-            calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                locale: 'es',
-                headerToolbar: {
-                    left: '',
-                    center: 'title',
-                    right: ''
-                },
-                selectable: true,
-                selectMirror: true,
-                select: function(arg) {
-                    if (!selectedService) {
-                        alert('Por favor selecciona un servicio primero');
-                        return;
+            const menuToggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            const navLinksItems = document.querySelectorAll('.nav-links a');
+
+            // Agregar scroll suave para todos los enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Obtener la altura del navbar
+                        const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                        
+                        // Calcular la posición considerando el navbar fijo
+                        const targetPosition = targetSection.offsetTop - navbarHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
                     }
-    
-                    selectedDate = arg.start;
-                    showTimeSlots();
-                },
-                eventClick: function(arg) {
-                    if (confirm('¿Deseas cancelar esta cita?')) {
-                        arg.event.remove();
+                    
+                    // Cerrar el menú móvil si está abierto
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
                     }
+                });
+            });
+
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Cerrar menú al hacer click fuera
+            document.addEventListener('click', (e) => {
+                if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
                 }
             });
-            calendar.render();
         });
-    
-        function showTimeSlots() {
-            const timeSlots = document.getElementById('timeSlots');
-            timeSlots.style.display = 'block';
-            
-            const availableSlots = document.getElementById('availableTimeSlots');
-            availableSlots.innerHTML = '';
-            
-            // Ejemplo de horarios disponibles según servicio
-            let slots = [];
-            if (selectedService === 'lectura-general') {
-                slots = ['09:00', '10:00', '11:00', '15:00', '16:00', '17:00'];
-            } else if (selectedService === 'amor-relaciones') {
-                slots = ['10:00', '12:00', '14:00', '16:00'];
-            } else if (selectedService === 'carrera-abundancia') {
-                slots = ['09:30', '11:30', '13:30', '15:30'];
-            }
-    
-            slots.forEach(time => {
-                const slot = document.createElement('div');
-                slot.className = 'time-slot';
-                slot.textContent = time;
-                slot.onclick = () => selectTimeSlot(time);
-                availableSlots.appendChild(slot);
-            });
-        }
-    
-        function selectTimeSlot(time) {
-            document.querySelectorAll('.time-slot').forEach(slot => {
-                slot.classList.remove('selected');
-            });
-            event.target.classList.add('selected');
-            selectedTime = time;
-            updateSummary();
-        }
-    
-        function updateSummary() {
-            if (selectedDate && selectedTime) {
-                const summary = document.getElementById('bookingSummary');
-                summary.style.display = 'block';
-                
-                document.getElementById('summaryService').textContent = 
-                    document.getElementById('serviceSelect').options[document.getElementById('serviceSelect').selectedIndex].text;
-                document.getElementById('summaryDate').textContent = 
-                    selectedDate.toLocaleDateString();
-                document.getElementById('summaryTime').textContent = selectedTime;
-            }
-        }
-    
-        function confirmBooking() {
-            if (selectedDate && selectedTime && selectedService) {
-                // Agregar evento al calendario
-                calendar.addEvent({
-                    title: 'Reservado',
-                    start: new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate(), parseInt(selectedTime.split(':')[0]), parseInt(selectedTime.split(':')[1])),
-                    allDay: false
-                });
-                alert('¡Tu cita mágica ha sido confirmada! ✨');
-                // Resetear selección
-                resetSelection();
-            } else {
-                alert('Por favor completa todos los campos de la reserva.');
-            }
-        }
-    
-        function resetSelection() {
-            selectedService = null;
-            selectedSessionType = null;
-            selectedDate = null;
-            selectedTime = null;
-            document.querySelectorAll('.service-card').forEach(card => card.classList.remove('selected'));
-            document.getElementById('serviceSelect').value = '';
-            document.getElementById('sessionType').value = 'presencial';
-            document.getElementById('bookingSummary').style.display = 'none';
-            document.getElementById('timeSlots').style.display = 'none';
-            document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
-        }
-    
-        function previousMonth() {
-            calendar.prev(); // Usar el calendario global
-        }
-    
-        function nextMonth() {
-            calendar.next(); // Usar el calendario global
-        }
     </script>
     <footer class="footer">
         <div class="footer-content">
@@ -1298,7 +1419,6 @@
             <div class="footer-section">
                 <h3>✨ Contacto</h3>
                 <ul class="footer-links">
-                    <li>📧 info@lecturamagica.com</li>
                     <li>📱 +56 9 1234 5678</li>
                     <li>📍 Santiago, Chile</li>
                 </ul>
